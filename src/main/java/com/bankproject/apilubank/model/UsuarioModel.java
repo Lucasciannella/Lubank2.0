@@ -1,15 +1,15 @@
 package com.bankproject.apilubank.model;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity(name = "usuario") //é uma entidade de banco de dados
+@Entity(name = "users") //é uma entidade de banco de dados
 public class UsuarioModel {
 
     @Id
-    public Integer id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false)
+    public Long id;
 
     @Column(nullable = false, length = 50)
     public String email;
@@ -20,15 +20,23 @@ public class UsuarioModel {
     @Column(nullable = false, length = 6)
     public String senha;
 
+    public UsuarioModel(String email, String login, String senha) {
+        this.email = email;
+        this.login = login;
+        this.senha = senha;
+    }
+
+    public UsuarioModel(){}
+
 
     //Getters and Setters
 
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
